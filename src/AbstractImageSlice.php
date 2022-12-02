@@ -218,8 +218,8 @@ abstract class AbstractImageSlice
     ): string
     {
         $imageResizeAdapter->freecrop(
-            $this->width,
-            $this->height,
+            min($this->width, $this->imageResizeAdapter->getWidth() - $this->getSliceLeftMargin($margin)),
+            min($this->height, $this->imageResizeAdapter->getHeight() - $this->getSliceTopMargin($margin)),
             $this->getSliceLeftMargin($margin),
             $this->getSliceTopMargin($margin)
         );
