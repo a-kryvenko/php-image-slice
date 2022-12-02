@@ -1,0 +1,31 @@
+{
+    "name": "antey/image-resize-optimal",
+    "description": "Library for resizing images to one of given resolutions.",
+    "keywords": ["php", "image", "resize", "autoresize", "optimal", "scale"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Antey\\ImageSlice\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Antey\\ImageSlice\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andriy Kryvenko",
+            "homepage": "https://a-krivenko.com/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "gumlet/php-image-resize": "2.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "php-coveralls/php-coveralls": "^2.5"
+    }
+}
