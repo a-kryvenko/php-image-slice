@@ -20,6 +20,8 @@ abstract class AbstractImageSlice
     private bool $lastSlide = false;
     private array $createdFiles = [];
 
+    private bool $isOwnFolder = false;
+
     /**
      * @param int $width
      * @param int $height
@@ -106,6 +108,12 @@ abstract class AbstractImageSlice
                 if (file_exists($createdFile)) {
                     unlink($createdFile);
                 }
+            }
+            if (
+                $this->isOwnFolder
+                && file_exists($this->folder)
+            ) {
+                rmdir($this->folder);
             }
             throw $e;
         }
@@ -200,7 +208,7 @@ abstract class AbstractImageSlice
             return 0;
         }
 
-        return floor(($this->imageResizeAdapter->getWidth() - $slidesCount * $this->width) / 2);
+        return floor(($this->getImageSize() - $slidesCount * $this->getSliceSize()) / 2);
     }
 
     /**
@@ -245,6 +253,9 @@ abstract class AbstractImageSlice
 
         if (!file_exists($folder)) {
             mkdir($folder);
+            $this->isOwnFolder = true;
+        } else {
+            $this->isOwnFolder = false;
         }
 
         return $folder;
