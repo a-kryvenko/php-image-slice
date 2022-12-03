@@ -7,7 +7,7 @@ class HorizontalImageSlice extends AbstractImageSlice
     /**
      * @inheritDoc
      */
-    protected function resize(): void
+    protected function setImageSize(): void
     {
         $this->imageResizeAdapter->resizeToHeight($this->height, $this->upscale);
     }

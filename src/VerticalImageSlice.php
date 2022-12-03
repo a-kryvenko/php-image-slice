@@ -7,7 +7,7 @@ class VerticalImageSlice extends AbstractImageSlice
     /**
      * @inheritDoc
      */
-    protected function resize(): void
+    protected function setImageSize(): void
     {
         $this->imageResizeAdapter->resizeToWidth($this->width, $this->upscale);
     }

@@ -18,8 +18,9 @@ abstract class AbstractImageSlice
 
     protected bool $upscale = false;
     private bool $lastSlide = false;
-    private array $createdFiles = [];
 
+    private string $tmpFile = '';
+    private array $createdFiles = [];
     private bool $isOwnFolder = false;
 
     /**
@@ -93,33 +94,17 @@ abstract class AbstractImageSlice
     public function slice(string $path, string $directory = '', string $name = ''): array
     {
         $this->setImage($path, $name, $directory);
-
-        $resizedImagePath = $path . '.resized.tmp';
         $this->resize();
-        $this->imageResizeAdapter->save($resizedImagePath);
 
         try {
-            $parts = $this->split($resizedImagePath);
+            $parts = $this->split();
         } catch (Exception $e) {
-            if (file_exists($resizedImagePath)) {
-                unlink($resizedImagePath);
-            }
-            foreach ($this->createdFiles as $createdFile) {
-                if (file_exists($createdFile)) {
-                    unlink($createdFile);
-                }
-            }
-            if (
-                $this->isOwnFolder
-                && file_exists($this->folder)
-            ) {
-                rmdir($this->folder);
-            }
+            $this->cleanTmpFile();
+            $this->cleanPartFiles();
+            $this->removeDirectory();
             throw $e;
         }
-        if (file_exists($resizedImagePath)) {
-            unlink($resizedImagePath);
-        }
+        $this->cleanTmpFile();
         $this->createdFiles = [];
 
         return $parts;
@@ -139,22 +124,32 @@ abstract class AbstractImageSlice
         $this->imageResizeAdapter = $this->imageResizeAdapter->load($path);
         $this->name = PathCalculator::getFileName($path, $name);
         $this->folder = $this->getFolder($path, $folder);
+        $this->tmpFile = $path . '.resized.tmp';
     }
 
     /**
      * @return void
-     * Resize image to resolution you wish.
+     * @throws Exception
      */
-    abstract protected function resize(): void;
+    protected function resize(): void
+    {
+        $this->setImageSize();
+        $this->imageResizeAdapter->save($this->tmpFile);
+    }
 
     /**
-     * @param string $resizedImagePath
+     * @return void
+     * @throws Exception
+     */
+    protected abstract function setImageSize(): void;
+
+    /**
      * @return array
      * @throws ImageResizeException
      * @throws ImageSliceException
      * Slice resized image into a pieces and return paths.
      */
-    private function split(string $resizedImagePath): array
+    private function split(): array
     {
         $pieces = [];
 
@@ -169,7 +164,7 @@ abstract class AbstractImageSlice
             $pieces[] = $this->createSlice(
                 $margin + $i * $this->getSliceSize(),
                 $this->folder . '/' . PathCalculator::getSliceName($this->name, $i),
-                $this->imageResizeAdapter->load($resizedImagePath)
+                $this->imageResizeAdapter->load($this->tmpFile)
             );
         }
 
@@ -259,5 +254,31 @@ abstract class AbstractImageSlice
         }
 
         return $folder;
+    }
+
+    private function cleanPartFiles(): void
+    {
+        foreach ($this->createdFiles as $createdFile) {
+            if (file_exists($createdFile)) {
+                unlink($createdFile);
+            }
+        }
+    }
+
+    private function cleanTmpFile(): void
+    {
+        if (file_exists($this->tmpFile)) {
+            unlink($this->tmpFile);
+        }
+    }
+
+    private function removeDirectory(): void
+    {
+        if (
+            $this->isOwnFolder
+            && is_dir($this->folder)
+        ) {
+            rmdir($this->folder);
+        }
     }
 }
