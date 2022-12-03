@@ -31,12 +31,7 @@ jobs:
           mkdir -p ./.build/logs
           ./vendor/bin/phpunit
 
-  finish:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Create LCOV report
+      - name: Coverall
         env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          composer global require php-coveralls/php-coveralls
-          ./vendor/bin/php-coveralls --coverage_clover=./.build/logs/clover.xml -v
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        run: ./vendor/bin/php-coveralls --coverage_clover=./.build/logs/clover.xml -v
