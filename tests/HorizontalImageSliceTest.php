@@ -20,7 +20,7 @@ class HorizontalImageSliceTest extends ImageSliceTestAbstract
 
     protected function getDestinationFolder(): string
     {
-        return __DIR__ . '/resources/horizontal_parts/';
+        return __DIR__ . '/resources/horizontal_parts/1/';
     }
 
     public function testSliceWithoutUpscale(): void

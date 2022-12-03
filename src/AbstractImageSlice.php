@@ -247,7 +247,7 @@ abstract class AbstractImageSlice
         $folder = PathCalculator::getDestinationFolder($path, $folder);
 
         if (!file_exists($folder)) {
-            mkdir($folder);
+            mkdir($folder, 0777, true);
             $this->isOwnFolder = true;
         } else {
             $this->isOwnFolder = false;
