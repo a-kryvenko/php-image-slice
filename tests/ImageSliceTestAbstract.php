@@ -4,6 +4,9 @@ namespace Antey\ImageSlice;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @codeCoverageIgnore
+ */
 abstract class ImageSliceTestAbstract extends TestCase
 {
     abstract protected function getImagePath(): string;

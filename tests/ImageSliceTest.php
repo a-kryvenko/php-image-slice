@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Antey\ImageSlice\AbstractImageSlice
+ * @covers \Antey\ImageSlice\Exception\ImageSliceException
  */
 class ImageSliceTest extends TestCase
 {

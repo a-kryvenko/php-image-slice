@@ -2,10 +2,11 @@
 
 namespace Antey\ImageSlice;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @covers \Antey\ImageSlice\HorizontalImageSlice
+ * @covers \Antey\ImageSlice\AbstractImageSlice
+ * @uses \Antey\ImageSlice\Adapter\ImageResizeAdapter
+ * @uses \Antey\ImageSlice\Storage\PathCalculator
  */
 class HorizontalImageSliceTest extends ImageSliceTestAbstract
 {

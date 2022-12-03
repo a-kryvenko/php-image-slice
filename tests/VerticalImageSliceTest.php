@@ -3,7 +3,10 @@
 namespace Antey\ImageSlice;
 
 /**
+ * @covers \Antey\ImageSlice\AbstractImageSlice
  * @covers \Antey\ImageSlice\VerticalImageSlice
+ * @uses \Antey\ImageSlice\Adapter\ImageResizeAdapter
+ * @uses \Antey\ImageSlice\Storage\PathCalculator
  */
 class VerticalImageSliceTest extends ImageSliceTestAbstract
 {
