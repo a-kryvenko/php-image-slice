@@ -1,7 +1,7 @@
 {
     "name": "antey/image-resize-optimal",
-    "description": "Library for resizing images to one of given resolutions.",
-    "keywords": ["php", "image", "resize", "autoresize", "optimal", "scale"],
+    "description": "Library for slicing image into a pieces",
+    "keywords": ["php", "image", "slice", "divide", "cut"],
     "type": "library",
     "license": "MIT",
     "autoload": {
