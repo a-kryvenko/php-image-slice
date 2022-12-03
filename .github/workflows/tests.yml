@@ -34,4 +34,6 @@ jobs:
       - name: Coverall
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: ./vendor/bin/php-coveralls --coverage_clover=./.build/logs/clover.xml -v
+        run: |
+          composer global require php-coveralls/php-coveralls
+          php-coveralls --coverage_clover=build/logs/clover.xml -v
