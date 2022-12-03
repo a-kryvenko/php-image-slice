@@ -2,6 +2,7 @@
     "name": "antey/image-slice",
     "description": "Library for slicing image into a pieces",
     "keywords": ["php", "image", "slice", "divide", "cut"],
+    "homepage": "https://github.com/a-kryvenko/php-image-slice",
     "type": "library",
     "license": "MIT",
     "autoload": {

@@ -9,7 +9,11 @@ PHP library to slice image into a pieces.
 
 ## Setup
 
-Download this repository and use in you own project.
+Manually by cloning repository, or via composer:
+
+```sh
+$ composer require antey/image-slice
+```
 
 ## Requirements
 
