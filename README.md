@@ -2,6 +2,8 @@
 
 PHP library to slice image into a pieces.
 
+![example workflow](https://github.com/a-kryvenko/php-image-slice/actions/workflows/tests.yml/badge.svg)
+
 ------
 
 ## Setup
