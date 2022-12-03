@@ -7,7 +7,7 @@ class PathCalculator
     public static function getDestinationFolder(string $filePath, string $folder): string
     {
         if (!empty($folder)) {
-            if (str_ends_with($folder, '/')) {
+            if (substr($folder, -1) === '/') {
                 $folder = substr($folder, 0, -1);
             }
             $destinationFolder = $folder;
@@ -23,7 +23,7 @@ class PathCalculator
     public static function getFileName(string $filePath, string $name): string
     {
         if (!empty($name)) {
-            if (str_starts_with($name, '/')) {
+            if (substr($name, 0, 1) === '/') {
                 $name = substr($name, 1);
             }
             $fileName = $name;
@@ -37,7 +37,7 @@ class PathCalculator
 
     public static function getSliceName(string $name, int $number): string
     {
-        if (!str_contains($name, '.')) {
+        if (strpos($name, '.') === false) {
             return $name . '-' . ($number + 1);
         }
 
