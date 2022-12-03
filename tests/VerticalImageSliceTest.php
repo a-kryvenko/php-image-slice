@@ -2,78 +2,65 @@
 
 namespace Antey\ImageSlice;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @covers \Antey\ImageSlice\VerticalImageSlice
  */
-class VerticalImageSliceTest extends TestCase
+class VerticalImageSliceTest extends ImageSliceTestAbstract
 {
-    private string $imagePath = __DIR__ . '/resources/vertical.png';
-    private string $destinationFolder = __DIR__ . '/resources/vertical_parts/';
-    private int $imageWidth = 3; //px
-    private int $imageHeight = 9; //px
+    private const TEST_IMAGE_WIDTH = 3; //px
+    private const TEST_IMAGE_HEIGHT = 9; //px
+
+    protected function getImagePath(): string
+    {
+        return __DIR__ . '/resources/vertical.png';
+    }
+
+    protected function getDestinationFolder(): string
+    {
+        return __DIR__ . '/resources/vertical_parts/';
+    }
 
     public function testSliceWithoutUpscale(): void
     {
-        $expectedSlices = 3;
-
-        $slicer = new VerticalImageSlice(6, 3);
-        $parts = $slicer->slice($this->imagePath, $this->destinationFolder);
-
-        $this->assertCount($expectedSlices, $parts);
-
-        $this->cleanUp($parts);
+        $imageSlice = new VerticalImageSlice(6, 3);
+        $this->testImageSlice($imageSlice, [
+            [3, 3],
+            [3, 3],
+            [3, 3],
+        ]);
     }
 
     public function testSliceWithUpscale(): void
     {
-        $expectedSlices = 6;
-
-        $slicer = new VerticalImageSlice(6, 3);
-        $slicer->allowUpscale();
-        $parts = $slicer->slice($this->imagePath, $this->destinationFolder);
-
-        $this->assertCount($expectedSlices, $parts);
-
-        $this->cleanUp($parts);
+        $imageSlice = new VerticalImageSlice(6, 3);
+        $imageSlice->allowUpscale();
+        $this->testImageSlice($imageSlice, [
+            [6, 3],
+            [6, 3],
+            [6, 3],
+            [6, 3],
+            [6, 3],
+            [6, 3],
+        ]);
     }
 
     public function testSliceWithoutLastSlide(): void
     {
-        $expectedSlices = 2;
-
-        $slicer = new VerticalImageSlice(3, 4);
-        $parts = $slicer->slice($this->imagePath, $this->destinationFolder);
-
-        $this->assertCount($expectedSlices, $parts);
-
-        $this->cleanUp($parts);
+        $imageSlice = new VerticalImageSlice(3, 4);
+        $this->testImageSlice($imageSlice, [
+            [3, 4],
+            [3, 4]
+        ]);
     }
 
     public function testSliceWithLastSlide(): void
     {
-        $expectedSlices = 3;
-
-        $slicer = new VerticalImageSlice(3, 4);
-        $slicer->allowLastSlide();
-        $parts = $slicer->slice($this->imagePath, $this->destinationFolder);
-
-        $this->assertCount($expectedSlices, $parts);
-
-        $this->cleanUp($parts);
-    }
-
-    private function cleanUp(array $paths): void
-    {
-        foreach ($paths as $path) {
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
-
-        if (file_exists($this->destinationFolder)) {
-            rmdir($this->destinationFolder);
-        }
+        $imageSlice = new VerticalImageSlice(3, 4);
+        $imageSlice->allowLastSlide();
+        $this->testImageSlice($imageSlice, [
+            [3, 4],
+            [3, 4],
+            [3, 1]
+        ]);
     }
 }
