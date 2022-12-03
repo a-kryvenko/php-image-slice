@@ -11,23 +11,27 @@ class ImageResizeAdapter
 
     /**
      * @param string $path
+     * @param ImageResize|null $imageResize
      * @throws ImageResizeException
      */
-    public function __construct(string $path = '')
+    public function __construct(string $path = '', ImageResize $imageResize = null)
     {
-        if (!empty($path)) {
+        if (!is_null($imageResize)) {
+            $this->imageResize = $imageResize;
+        } else if (!empty($path)) {
             $this->imageResize = new ImageResize($path);
         }
     }
 
     /**
      * @param string $path
+     * @param ImageResize|null $imageResize
      * @return ImageResizeAdapter
      * @throws ImageResizeException
      */
-    public function load(string $path): ImageResizeAdapter
+    public function load(string $path, ImageResize $imageResize = null): ImageResizeAdapter
     {
-        return new self($path);
+        return new self($path, $imageResize);
     }
 
     /**
