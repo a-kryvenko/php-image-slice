@@ -67,21 +67,21 @@ abstract class AbstractImageSlice
 
     /**
      * @param string $path <p>
-     * this parameter specify the file you wish to slice into a pieces
+     * this parameter specify absolute path to file you wish to slice into a pieces.
      * </p>
      * @param string $directory <p>
      * this parameter specify folder, where parts will be stored. If empty - will be
-     * stored in original file directory.
+     * stored in directory of original file.
      * </p>
      * @param string $name <p>
      * this parameter specify name of result image parts. If empty - will be
-     * used original filename.
+     * used name of source file.
      * </p>
-     * @return string[] paths of sliced peaces
+     * @return string[] paths of sliced pieces.
      * @throws Exception
-     *
-     * Resize original file and save as single or multiple files in specified path.<br/>
-     * By default sliced files for /path/to/example.jpeg will be stored as:
+     * <br>
+     * Will resize original file and save as single or multiple files in specified path.<br/>
+     * By default, sliced files for /path/to/example.jpeg will be stored as:
      * <ul>
      *  <li>/path/to/example-1.jpeg</li>
      *  <li>/path/to/example-2.jpeg</li>
