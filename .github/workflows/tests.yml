@@ -28,12 +28,11 @@ jobs:
 
       - name: Running Tests
         run: |
-          mkdir -p build/logs
+          mkdir -p ./.build/logs
           ./vendor/bin/phpunit
 
-      - name: Coverage Report
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: |
-          composer global require php-coveralls/php-coveralls
-          php-coveralls --coverage_clover=./.build/logs/clover.xml -v
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./.build/logs/clover.xml
