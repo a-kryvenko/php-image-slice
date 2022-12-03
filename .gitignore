@@ -1,4 +1,4 @@
-.build
+build
 .phpunit.cache
 composer.lock
 phpunit.xml
