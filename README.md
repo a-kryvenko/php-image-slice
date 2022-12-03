@@ -20,6 +20,9 @@ This package using [php-image-resize](https://github.com/gumlet/php-image-resize
 ## Usage
 
 There is two available slice types - slice horizontal and slice vertical.
+As constructor parameters for `HorizontalImageSlice` and `VerticalImageSlice`
+take width and height (in pixels) pieces, for what you
+wish to slice image.
 
 ### Horizontal slicing
 
