@@ -3,7 +3,7 @@ name: Tests
 on: ["push", "pull_request"]
 
 jobs:
-  run:
+  testing:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
@@ -32,7 +32,13 @@ jobs:
           mkdir -p build/logs
           ./vendor/bin/phpunit
 
-      - name: Coverall
+
+  coverall:
+    needs: testing
+    runs-on: ubuntu-20.04
+    name: Coverall report sending
+    steps:
+      - name: Send report
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./vendor/bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
