@@ -1,5 +1,5 @@
 {
-    "name": "antey/image-resize-optimal",
+    "name": "antey/image-slice",
     "description": "Library for slicing image into a pieces",
     "keywords": ["php", "image", "slice", "divide", "cut"],
     "type": "library",
