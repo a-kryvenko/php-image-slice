@@ -9,6 +9,10 @@ PHP library to slice image into a pieces.
 
 ------
 
+![example](https://github.com/a-kryvenko/php-image-slice/assets/9430313/5ba49c73-049d-45c7-a392-5d00cef93c34)
+
+------
+
 ## Setup
 
 Manually by cloning repository, or via composer:
