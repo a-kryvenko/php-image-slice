@@ -6,6 +6,7 @@ PHP library to slice image into a pieces.
 [![Coverage Status](https://coveralls.io/repos/github/a-kryvenko/php-image-slice/badge.svg?branch=master)](https://coveralls.io/github/a-kryvenko/php-image-slice?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+[![Ceasefire Now](https://badge.techforpalestine.org/ceasefire-now)](https://techforpalestine.org/learn-more)
 
 ------
 
