@@ -5,7 +5,6 @@ PHP library to slice image into a pieces.
 ![tests workflow](https://github.com/a-kryvenko/php-image-slice/actions/workflows/tests.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/a-kryvenko/php-image-slice/badge.svg?branch=master)](https://coveralls.io/github/a-kryvenko/php-image-slice?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 ------
 
@@ -17,11 +16,13 @@ PHP library to slice image into a pieces.
 
 ## Setup
 
-Manually by cloning repository, or via composer:
+Via composer:
 
 ```sh
 $ composer require antey/image-slice
 ```
+
+Or by cloning repository
 
 ## Requirements
 
@@ -30,7 +31,7 @@ $ composer require antey/image-slice
 
 ## Dependencies
 
-This package using [php-image-resize](https://github.com/gumlet/php-image-resize)
+- [php-image-resize](https://github.com/gumlet/php-image-resize)
 
 ## Usage
 
